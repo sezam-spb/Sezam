@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <item android:drawable="@drawable/group_border_pressed" android:state_pressed="true"></item>
+    <item android:drawable="@drawable/group_border_selected" android:state_activated="true"></item>
+    <item android:drawable="@drawable/group_border_normal" ></item>
+
+</selector>

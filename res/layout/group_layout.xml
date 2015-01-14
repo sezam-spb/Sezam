@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Inchpisi himarutyun... In Linear paddings are ok, but without Linear... -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/pictogram_group_height">
+    
+    <Button  
+	    android:id="@+id/subGroupItem"
+	    android:layout_width="match_parent"
+	    android:layout_height="@dimen/pictogram_group_height"
+	    android:background="@drawable/group_button_effect"
+	    android:textSize="@dimen/button_font_size" 
+	    
+	    android:clickable="false"
+	    android:focusable="false"/> 
+</LinearLayout>
+
+    
+ 	<!--  android:descendantFocusability="blocksDescendants"
+ 		  android:focusableInTouchMode = "false" -->
+ 	
+ 	<!-- <TextView  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/subGroupItem"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentLeft="true"/> -->
+
+  

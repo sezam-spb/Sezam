@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name" translatable="false">Sezam</string>
+    <string name="action_sign_in"  translatable="false">Войти</string>
+    
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    
+    <string name="start_page_title">Добро пожаловать в «Сезам»!</string>
+    <string name="start_page_text"> Для начала работы нажмите на иконку приложения в левом верхнем углу.\nДля того чтобы начать диалог, выберите из открывшегося списка имя собеседника.\nЧтобы использовать приложение в режиме коммуникативной доски, выберите первый контакт «Коммуникатор».
+    </string>
+
+</resources>

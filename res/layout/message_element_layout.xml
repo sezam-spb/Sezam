@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/new_message_height"
+	android:layout_height="@dimen/new_message_height" >
+	
+	<com.spb.sezam.widged.GridViewItem  
+	    android:id="@+id/messageItem"
+	    android:layout_width="@dimen/new_message_height"
+	    android:layout_height="@dimen/new_message_height"
+     	android:layout_marginRight="4dp"
+       	android:layout_marginTop="2dp" 
+   		android:layout_marginBottom="2dp"/>
+	
+</RelativeLayout>
+
+  

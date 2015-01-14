@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="keyboard_column_count">8</integer>
+    <integer name="new_message_icons_count">11</integer>
+
+</resources>
