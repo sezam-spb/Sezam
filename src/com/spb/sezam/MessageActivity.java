@@ -4,9 +4,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,7 +15,6 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-import com.nostra13.universalimageloader.core.assist.ImageSize;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 import com.spb.sezam.NavigationDrawerFragment.NavigationDrawerCallbacks;
 import com.spb.sezam.adapters.GridViewAdapter;
@@ -30,8 +27,6 @@ import com.spb.sezam.management.NameManager;
 import com.spb.sezam.management.Pictogram;
 import com.spb.sezam.management.PictogramManager;
 import com.spb.sezam.utils.ErrorUtil;
-import com.spb.sezam.utils.UIUtil;
-import com.spb.sezam.widged.HorizontialListView;
 import com.vk.sdk.VKScope;
 import com.vk.sdk.VKSdk;
 import com.vk.sdk.VKUIHelper;
@@ -41,18 +36,13 @@ import com.vk.sdk.api.VKRequest;
 import com.vk.sdk.api.VKRequest.VKRequestListener;
 import com.vk.sdk.api.VKResponse;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.CompressFormat;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -64,7 +54,6 @@ import android.util.TypedValue;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Menu;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -73,6 +62,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.GridView;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -90,7 +80,7 @@ public class MessageActivity extends ActionBarActivity implements NavigationDraw
 	private static final int MESSAGE_RECIEVE_COUNT = 7;
 	
 	private List<String> messageToSend = new ArrayList<String>();
-	private List<Pictogram> pictogramsToSend = new ArrayList<>(); //maybe can messageToSend messageToSend
+	//private List<Pictogram> pictogramsToSend = new ArrayList<>(); //maybe can messageToSend messageToSend
 	private JSONArray allMessages = new JSONArray();
 	private String activeUserName = null;
 	private int activeUserId;
@@ -98,7 +88,7 @@ public class MessageActivity extends ActionBarActivity implements NavigationDraw
 	private GroupAdapter firstLevelGroupAdapter = null;
 	private GroupAdapter subGroupAdapter = null;
 	private GridViewAdapter gridViewAdapter = null;
-	private MessageAdapter newMessageAdapter = null;
+	//private MessageAdapter newMessageAdapter = null;
 	
 	private GridView subGroupsView = null;
 	private GridView pictogramsGridView = null;
@@ -120,10 +110,11 @@ public class MessageActivity extends ActionBarActivity implements NavigationDraw
 		@Override
 		public void onComplete(VKResponse response) {
 			
-			/*LinearLayout formLayout = (LinearLayout) findViewById(R.id.linearLayout1);
-			formLayout.removeAllViews();*/
-			pictogramsToSend.clear();
-			newMessageAdapter.updateView(pictogramsToSend);
+			LinearLayout formLayout = (LinearLayout) findViewById(R.id.linearLayout1);
+			formLayout.removeAllViews();
+			
+			/*pictogramsToSend.clear();
+			newMessageAdapter.updateView(pictogramsToSend);*/
 			
 			messageToSend.clear();
 			Toast showSent = Toast.makeText(getApplicationContext(), "Сообщение отправлено", Toast.LENGTH_SHORT);
@@ -290,7 +281,7 @@ public class MessageActivity extends ActionBarActivity implements NavigationDraw
 			return true;
 		case R.id.action_about:
 			AlertDialog.Builder aboutBuilder = new AlertDialog.Builder(this);
-			aboutBuilder.setMessage("Версия: 0.1-Alpha.")
+			aboutBuilder.setMessage(R.string.about_app)
 		       .setCancelable(false)
 		       .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
@@ -414,12 +405,14 @@ public class MessageActivity extends ActionBarActivity implements NavigationDraw
 			messageString = messageJson.getString("body").trim();
 			messageArr =  messageString.split("\\" + ICON_SPLIT_SYMBOLS);
 			
-			LinearLayout linearLayout = new LinearLayout(MessageActivity.this);
-			historyLayout.addView(linearLayout);
+			LinearLayout messageLinerLayout = new LinearLayout(MessageActivity.this);
+			HorizontalScrollView messageScrollView = new HorizontalScrollView(MessageActivity.this);
+			historyLayout.addView(messageScrollView);
+			messageScrollView.addView(messageLinerLayout);
 			
 			//Analyze message parts
 			for(String text : messageArr){
-				showTextWithImages(text, linearLayout);
+				showTextWithImages(text, messageLinerLayout);
 			}
 		}
 	}
@@ -452,7 +445,7 @@ public class MessageActivity extends ActionBarActivity implements NavigationDraw
 		}
 		
 		ImageView image = new ImageView(MessageActivity.this);
-		setImageViewSize(image, historyImageSize);
+		setImageViewSize(image, historyImageSize, 2);
 		
 		String path = NameManager.getInstance().getFileEngName(text);
 		if(path != null){
@@ -472,13 +465,15 @@ public class MessageActivity extends ActionBarActivity implements NavigationDraw
 	}
 	
 	public void backButton(View v){
-        //LinearLayout formLayout = (LinearLayout)findViewById(R.id.linearLayout1);
+        LinearLayout formLayout = (LinearLayout)findViewById(R.id.linearLayout1);
         if(messageToSend.size() != 0){
-        	//formLayout.removeViewAt(formLayout.getChildCount() - 1 );
+        	formLayout.removeViewAt(formLayout.getChildCount() - 1 );
         	messageToSend.remove(messageToSend.size() - 1);
+        	HorizontalScrollView hView = (HorizontalScrollView)findViewById(R.id.new_mess_scroll);
+        	scrollRight(hView);
         	
-        	pictogramsToSend.remove(pictogramsToSend.size() - 1);
-        	newMessageAdapter.updateView(pictogramsToSend);
+        	/*pictogramsToSend.remove(pictogramsToSend.size() - 1);
+        	newMessageAdapter.updateView(pictogramsToSend);*/
         }
 	}	
 	
@@ -523,7 +518,20 @@ public class MessageActivity extends ActionBarActivity implements NavigationDraw
 		setScrollViewDirection(view, ScrollView.FOCUS_DOWN);
 	}
 	
+	private void scrollRight(final HorizontalScrollView view){
+		setScrollViewDirection(view, ScrollView.FOCUS_RIGHT);
+	}
+	
 	private void setScrollViewDirection(final ScrollView view, final int direction){
+		view.post(new Runnable() {
+	        @Override
+	        public void run() {
+	        	view.fullScroll(direction);
+	        }
+	    });
+	}
+	
+	private void setScrollViewDirection(final HorizontalScrollView view, final int direction){
 		view.post(new Runnable() {
 	        @Override
 	        public void run() {
@@ -882,18 +890,18 @@ public List<String[]> filterMessages(JSONArray messages) throws JSONException{
 	private void initForUser(JSONObject user){
 		LinearLayout historyLayout = (LinearLayout)findViewById(R.id.messageHistory);
 		historyLayout.removeAllViews();
-		/*LinearLayout formLayout = (LinearLayout)findViewById(R.id.linearLayout1);
-		formLayout.removeAllViews();*/
-		pictogramsToSend.clear();
-		messageToSend.clear();
+		LinearLayout formLayout = (LinearLayout)findViewById(R.id.linearLayout1);
+		formLayout.removeAllViews();
 		
+		messageToSend.clear();
+		/*pictogramsToSend.clear();
 		if(newMessageAdapter == null){
 			newMessageAdapter = new MessageAdapter(MessageActivity.this, pictogramsToSend);
 			HorizontialListView newMessageLayout = (HorizontialListView)findViewById(R.id.newMessage);
 			newMessageLayout.setAdapter(newMessageAdapter);
 		} else {
 			newMessageAdapter.updateView(pictogramsToSend);
-		}
+		}*/
 		
 		//method is called first time
 		if(activeUserName == null){
@@ -914,8 +922,9 @@ public List<String[]> filterMessages(JSONArray messages) throws JSONException{
 	 * @param image
 	 * @param size
 	 */
-	private void setImageViewSize(ImageView image, int size){
-		ViewGroup.LayoutParams par = new LayoutParams(size, size);
+	private void setImageViewSize(ImageView image, int size, int allMargin){
+		LinearLayout.LayoutParams par = new LinearLayout.LayoutParams(size, size);
+		par.setMargins(allMargin, allMargin, allMargin, allMargin);
 		image.setLayoutParams(par);
 	}
 	
@@ -930,19 +939,19 @@ public List<String[]> filterMessages(JSONArray messages) throws JSONException{
 
 			@Override
 			public void onClick(View view) {
-				//final LinearLayout piktogramsLayout = (LinearLayout) findViewById(R.id.linearLayout1);
+				
 				final ImageView image = new ImageView(MessageActivity.this);
 				
 				//translated to pixels
 				int size = (int)getResources().getDimension(R.dimen.new_message_height);
-				setImageViewSize(image, size);
+				setImageViewSize(image, size, 2);
 				
 				Pictogram pic = ((GridViewHolder)view.getTag()).getPictogram(); //was set in adapter
 				String picRuName  = NameManager.getInstance().getFileRuName(pic.getPath());
 				addImageNameToSendMessages(picRuName);
 				
-				pictogramsToSend.add(pic);
-				
+				//for gridview
+				/*pictogramsToSend.add(pic);
 				newMessageAdapter.updateView(pictogramsToSend);
 				final HorizontialListView newMessageLayout = (HorizontialListView)findViewById(R.id.newMessage);
 				newMessageLayout.post(new Runnable() {
@@ -951,24 +960,25 @@ public List<String[]> filterMessages(JSONArray messages) throws JSONException{
 						//scroll
 						newMessageLayout.setSelection(pictogramsToSend.size());
 						if(pictogramsToSend.size() > getResources().getInteger(R.integer.new_message_icons_count)){
-							//newMessageLayout.setSelection(pictogramsToSend.size());
-							newMessageLayout.scrollTo(pictogramsToSend.size());
+							newMessageLayout.setSelection(pictogramsToSend.size());
+							//newMessageLayout.scrollTo(pictogramsToSend.size());
 						}
-					}
-				});
-				
-				
-				/*ImageLoader imageLoader = ImageLoader.getInstance();
-				imageLoader.displayImage(pic.getPathWithAssests(), image, new SimpleImageLoadingListener() {
-					@Override
-					public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-						BitmapDrawable bd = new BitmapDrawable(getResources(), loadedImage);
-						((ImageView)view).setBackground(bd);
-						piktogramsLayout.addView(image);
 					}
 				});*/
 				
-				//piktogramsLayout.addView(image);
+				final LinearLayout piktogramsLayout = (LinearLayout) findViewById(R.id.linearLayout1);
+				ImageLoader imageLoader = ImageLoader.getInstance();
+				imageLoader.displayImage(pic.getPathWithAssests(), image, new SimpleImageLoadingListener() {
+					@Override
+					public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+						//BitmapDrawable bd = new BitmapDrawable(getResources(), loadedImage);
+						//((ImageView)view).setBackground(bd);
+						piktogramsLayout.addView(image);
+						HorizontalScrollView hView = (HorizontalScrollView)findViewById(R.id.new_mess_scroll);
+						scrollRight(hView);
+					}
+				});
+				
 			}
 		};
 	}

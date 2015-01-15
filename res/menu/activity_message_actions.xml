@@ -3,12 +3,12 @@
 	<item
 	    android:id="@+id/action_message"
 	    Sezam:showAsAction="always"/>
-	<item android:id="@+id/action_email"	
-		android:title="Обратная связь"
-		Sezam:showAsAction="never" />	
 	<item android:id="@+id/action_about"	
 		android:title="О приложении"
 		Sezam:showAsAction="never"/>
+	<item android:id="@+id/action_email"	
+		android:title="Обратная связь"
+		Sezam:showAsAction="never" />	
 	<item android:id="@+id/action_exit"	
 		android:title="Выход"
 		Sezam:showAsAction="never" />

@@ -82,29 +82,30 @@
 	            android:layout_height="@dimen/new_message_height"
 	            android:background="#FFFFFF" >
 	            
-	          <!--  <HorizontalScrollView 
-	               	android:id="@+id/asdSscroll"
-	                android:layout_height="@dimen/new_message_height"
-	                android:layout_width="wrap_content" 
-	                android:layout_alignParentLeft="true"
-	                android:layout_toLeftOf="@+id/send">  -->
-		            <com.spb.sezam.widged.HorizontialListView 
+	         
+		           <!--  <com.spb.sezam.widged.HorizontialListView 
 		                android:id="@+id/newMessage"
 		                android:layout_height="@dimen/new_message_height"
 		                android:layout_width="wrap_content"
 		                android:orientation="horizontal"
 		                android:layout_alignParentLeft="true"
 	                	android:layout_toLeftOf="@+id/send" 
-		                />
-	            <!-- </HorizontalScrollView> -->
+		                /> -->
+	            
 
-	            <!-- <LinearLayout
-	                android:id="@+id/linearLayout1"
-	                android:layout_width="match_parent"
+			   <HorizontalScrollView 
+	               	android:id="@+id/new_mess_scroll"
 	                android:layout_height="@dimen/new_message_height"
+	                android:layout_width="wrap_content" 
 	                android:layout_alignParentLeft="true"
-	                android:orientation="horizontal" >
-	            </LinearLayout> -->
+	                android:layout_toLeftOf="@+id/send"> 
+		            <LinearLayout
+		                android:id="@+id/linearLayout1"
+		                android:layout_width="wrap_content"
+		                android:layout_height="match_parent"
+		                android:orientation="horizontal" >
+		            </LinearLayout> 
+	           </HorizontalScrollView> 
 
 				<!-- <RelativeLayout 
 				    android:id="@+id/test_Rel"
