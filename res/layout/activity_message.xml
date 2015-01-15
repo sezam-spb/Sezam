@@ -57,7 +57,8 @@
 	        android:id="@+id/container"
 	        android:layout_width="match_parent"
 	        android:layout_height="match_parent" 
-	        android:orientation="vertical">
+	        android:orientation="vertical"
+	        android:background="#DDDDDD">
 		    
 	        <ScrollView
 	            android:id="@+id/scrollView1"
@@ -80,7 +81,9 @@
 	            android:id="@+id/relativeLayout1"
 	            android:layout_width="match_parent"
 	            android:layout_height="@dimen/new_message_height"
-	            android:background="#FFFFFF" >
+	            android:background="@drawable/new_message_frame"
+	            android:layout_marginTop="4dp"
+	            android:layout_marginBottom="4dp">
 	            
 	         
 		           <!--  <com.spb.sezam.widged.HorizontialListView 
@@ -99,11 +102,15 @@
 	                android:layout_width="wrap_content" 
 	                android:layout_alignParentLeft="true"
 	                android:layout_toLeftOf="@+id/send"> 
+	                
+	                <!-- Margins with size of relative's frame boarder -->
 		            <LinearLayout
 		                android:id="@+id/linearLayout1"
 		                android:layout_width="wrap_content"
-		                android:layout_height="match_parent"
-		                android:orientation="horizontal" >
+		                android:layout_height="wrap_content"
+		                android:orientation="horizontal"
+		                android:layout_marginTop="2dp"
+		                android:layout_marginBottom="2dp"  >
 		            </LinearLayout> 
 	           </HorizontalScrollView> 
 

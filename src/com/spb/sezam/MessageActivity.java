@@ -326,7 +326,7 @@ public class MessageActivity extends ActionBarActivity implements NavigationDraw
 					Log.e("wakeUp", "wakeUp");
 					//startActivity(FriendsActivity.class);
 					// skzbi hamar shat el a
-					b.setText("Выход!");
+					//b.setText("Выход!");
 					b.setOnClickListener(new View.OnClickListener() {
 						@Override
 						public void onClick(View view) {
@@ -922,9 +922,10 @@ public List<String[]> filterMessages(JSONArray messages) throws JSONException{
 	 * @param image
 	 * @param size
 	 */
-	private void setImageViewSize(ImageView image, int size, int allMargin){
+	private void setImageViewSize(ImageView image, int size, int margin){
 		LinearLayout.LayoutParams par = new LinearLayout.LayoutParams(size, size);
-		par.setMargins(allMargin, allMargin, allMargin, allMargin);
+		par.setMargins(margin, margin, margin, margin);
+		//TODO: not affect in bottom margin
 		image.setLayoutParams(par);
 	}
 	
@@ -941,9 +942,8 @@ public List<String[]> filterMessages(JSONArray messages) throws JSONException{
 			public void onClick(View view) {
 				
 				final ImageView image = new ImageView(MessageActivity.this);
-				
 				//translated to pixels
-				int size = (int)getResources().getDimension(R.dimen.new_message_height);
+				int size = (int)getResources().getDimension(R.dimen.new_message_height)-5;
 				setImageViewSize(image, size, 2);
 				
 				Pictogram pic = ((GridViewHolder)view.getTag()).getPictogram(); //was set in adapter

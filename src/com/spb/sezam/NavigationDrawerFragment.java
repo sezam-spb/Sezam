@@ -249,7 +249,7 @@ public class NavigationDrawerFragment extends Fragment {
 			testUser = new JSONObject();
 			testUser.put("last_name", "");
 			testUser.put("first_name", "ÊÎÌÌÓÍÈÊÀÒÎĞ");
-			testUser.put("id", "53759969"); //old profile ID
+			testUser.put("id", "287378130"); //old profile ID
 			testUser.put("online", "0");
 			testUser.put("unread_count", "0");
     	}
