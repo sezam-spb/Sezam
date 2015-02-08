@@ -10,6 +10,8 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.spb.sezam.adapters.UsersAdapter;
 import com.spb.sezam.utils.ErrorUtil;
@@ -43,8 +45,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -125,7 +125,25 @@ public class NavigationDrawerFragment extends Fragment {
 		@Override
 		public void onComplete(VKResponse response) {
 			try {
-				JSONArray messages = response.json.getJSONObject("response").getJSONArray("items");
+				JSONArray dialogs = response.json.getJSONObject("response").getJSONArray("items");
+				JSONArray messages = new JSONArray();
+				
+				for(int i=0; i<dialogs.length(); i++){
+					JSONObject dialog = (JSONObject)dialogs.get(i);
+					//exclude chats
+					try{
+						dialog.getJSONObject("message").getInt("chat_id");
+						
+					} catch (JSONException e) {
+						//if not in chat
+						if(isInUsersList(dialog.getJSONObject("message").getInt("user_id"))){
+							//and message is sent by friend(user)
+							messages.put(dialog);
+						}
+					}
+					
+				}
+				
 				unReadDialogsCount = messages.length();
 				
 				JSONObject dialogInfo = null;
@@ -177,7 +195,16 @@ public class NavigationDrawerFragment extends Fragment {
 			ErrorUtil.showError(getActivity(), error);
 		}
 	};
+	//-------------------------------------------------------//
 
+	private boolean isInUsersList(int userId) throws JSONException{
+		for(JSONObject user : users){
+			if(user.getInt("id") == userId){
+				return true;
+			}
+		}
+		return false;
+	}
 	
     public NavigationDrawerFragment() {
     }
@@ -185,7 +212,10 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        
+        Logger SlfLogger = LoggerFactory.getLogger(NavigationDrawerFragment.class);
+        SlfLogger.debug("Creating NavigationDrawer");
+        
         // Read in the flag indicating whether or not the user has demonstrated awareness of the
         // drawer. See PREF_USER_LEARNED_DRAWER for details.
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -278,6 +308,8 @@ public class NavigationDrawerFragment extends Fragment {
 	}
     
     private void checkUnreadeMessagesPeriodicly() {
+    	//let it as was before (not like reciveMessage) cause need interval (800) 
+    	//and be really periodically , even if app is in background
 		checkUnreadMessagesRunnable = new Runnable() {
 			public void run() {
 				checkUnreadeMessages();

@@ -76,11 +76,11 @@ public class NameManager {
 			valEng = parser.getAttributeValue(0);
 			valRu = parser.getAttributeValue(1);
 			if(ElementType.FILE.getName().equals(parser.getName())){
-				filesEngKey.put(valEng.trim(), valRu.trim());
-				filesRuKey.put(valRu.trim(), valEng.trim());
+				filesEngKey.put(valEng.trim(), valRu);
+				filesRuKey.put(valRu, valEng.trim()); //Ru names not trimmed because of possible space in names
 			} else if(ElementType.GROUP.getName().equals(parser.getName())){
-				groupsEngKey.put(valEng.trim(), valRu.trim());
-				groupsRuKey.put(valRu.trim(), valEng.trim());
+				groupsEngKey.put(valEng.trim(), valRu);
+				groupsRuKey.put(valRu, valEng.trim());
 			}
 		} catch (IndexOutOfBoundsException e) {
 			//continue;
@@ -108,7 +108,7 @@ public class NameManager {
 	 */
 	public String getFileEngName(String ruName){
 		if(ruName != null){
-			return filesRuKey.get(ruName.trim());
+			return filesRuKey.get(ruName);
 		} 
 		return null;
 	}
@@ -132,7 +132,7 @@ public class NameManager {
 	 */
 	public String getGroupEngName(String ruName){
 		if(ruName != null){
-			return groupsRuKey.get(ruName.trim());
+			return groupsRuKey.get(ruName);
 		}
 		return null;
 	}
