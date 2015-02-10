@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <pictograms>
     
 	<group
@@ -53,11 +53,14 @@
 		 group_name="9.drugoe"
 		 ru_name="другое"/> 
 	<group
-		 group_name="9.drugoe/1.predlogi"
-		 ru_name="предлоги"/>
+		 group_name="9.drugoe/1.klaviatura"
+		 ru_name="клавиатура"/>
 	<group
 		 group_name="9.drugoe/2.chislitelnye"
 		 ru_name="числительные"/>
+	<group
+		 group_name="9.drugoe/3.predlogi"
+		 ru_name="предлоги"/>	 	 
 	<group
 		 group_name="10.jemocii"
 		 ru_name="эмоции"/>
@@ -1299,59 +1302,209 @@
 	<file 
 	       file_name="8.vopros/8.pochemu.jpg" 
 	       ru_name="почему"/>
+   	<file 
+	       file_name="9.drugoe/1.klaviatura/1.tochka.png" 
+	       ru_name="."/>
+	<file 
+	       file_name="9.drugoe/1.klaviatura/2.zap.jpg" 
+	       ru_name=","/>			
+	<file 
+	       file_name="9.drugoe/1.klaviatura/3.vopr.png" 
+	       ru_name="\?"/>
+	<file 
+	       file_name="9.drugoe/1.klaviatura/4.voskl.png" 
+	       ru_name="!"/>
+	<file 
+	       file_name="9.drugoe/1.klaviatura/5.c_odin.png" 
+	       ru_name="1"/>
+	<file 
+	       file_name="9.drugoe/1.klaviatura/6.c_dva.png" 
+	       ru_name="2"/>			
+	<file 
+	       file_name="9.drugoe/1.klaviatura/7.tri.png" 
+	       ru_name="3"/>
     <file 
-	       file_name="9.drugoe/1.predlogi/1.k.jpg" 
-	       ru_name="к"/>
-    <file 
-	       file_name="9.drugoe/1.predlogi/2.ot.jpg" 
-	       ru_name="от"/>
+	       file_name="9.drugoe/1.klaviatura/8.chetiri.png" 
+	       ru_name="4"/>
 	<file 
-	       file_name="9.drugoe/1.predlogi/3.vverh.jpg" 
-	       ru_name="вверх"/>
+	       file_name="9.drugoe/1.klaviatura/9.piat.png" 
+	       ru_name="5"/>
 	<file 
-	       file_name="9.drugoe/1.predlogi/4.vniz.jpg" 
-	       ru_name="вниз"/>
+	       file_name="9.drugoe/1.klaviatura/10.shest.png" 
+	       ru_name="6"/>			
 	<file 
-	       file_name="9.drugoe/1.predlogi/5.blizko.jpg" 
-	       ru_name="близко"/>
+	       file_name="9.drugoe/1.klaviatura/11.sem.png" 
+	       ru_name="7"/>
 	<file 
-	       file_name="9.drugoe/1.predlogi/6.daleko.jpg" 
-	       ru_name="далеко"/>
+	       file_name="9.drugoe/1.klaviatura/12.vosem.png" 
+	       ru_name="8"/>
 	<file 
-	       file_name="9.drugoe/1.predlogi/7.na.jpg" 
-	       ru_name="на"/>
+	       file_name="9.drugoe/1.klaviatura/13.deviat.png" 
+	       ru_name="9"/>
 	<file 
-	       file_name="9.drugoe/1.predlogi/8.vnutri.jpg" 
-	       ru_name="внутри"/>
+	       file_name="9.drugoe/1.klaviatura/14.nol.png" 
+	       ru_name="0"/>			
 	<file 
-	       file_name="9.drugoe/1.predlogi/9.nad.jpg" 
-	       ru_name="над"/>
+	       file_name="9.drugoe/1.klaviatura/14.1.plus.png" 
+	       ru_name="+"/>
+	   <file 
+	       file_name="9.drugoe/1.klaviatura/14.2.minus.png" 
+	       ru_name="-"/>
 	<file 
-	       file_name="9.drugoe/1.predlogi/10.pod.jpg" 
-	       ru_name="под"/>
+	       file_name="9.drugoe/1.klaviatura/14.3.ravno.png" 
+	       ru_name="="/>
+   	<file 
+	       file_name="9.drugoe/1.klaviatura/15.a.png" 
+	       ru_name="а"/>
 	<file 
-	       file_name="9.drugoe/1.predlogi/11.pered.jpg" 
-	       ru_name="перед"/>
+	       file_name="9.drugoe/1.klaviatura/16.b.png" 
+	       ru_name="б"/>			
 	<file 
-	       file_name="9.drugoe/1.predlogi/12.1.za.jpg" 
-	       ru_name="за"/>	
-	<file 
-	       file_name="9.drugoe/1.predlogi/12.okolo.jpg" 
-	       ru_name="около"/>
-	<file 
-	       file_name="9.drugoe/1.predlogi/13.mezhdu.jpg" 
-	       ru_name="между"/>
-	<file 
-	       file_name="9.drugoe/1.predlogi/14.iz.jpg" 
-	       ru_name="из"/>
-	<file 
-	       file_name="9.drugoe/1.predlogi/15.v.jpg" 
+	       file_name="9.drugoe/1.klaviatura/17.v.png" 
 	       ru_name="в"/>
 	<file 
-	       file_name="9.drugoe/1.predlogi/16.vmeste.jpg" 
+	       file_name="9.drugoe/1.klaviatura/18.g.png" 
+	       ru_name="г"/>
+	<file 
+	       file_name="9.drugoe/1.klaviatura/19.d.png" 
+	       ru_name="д"/>
+	<file 
+	       file_name="9.drugoe/1.klaviatura/20.e.png" 
+	       ru_name="е"/>			
+	<file 
+	       file_name="9.drugoe/1.klaviatura/21.io.png" 
+	       ru_name="ё"/>
+    <file 
+	       file_name="9.drugoe/1.klaviatura/22.zh.png" 
+	       ru_name="ж"/>
+	<file 
+	       file_name="9.drugoe/1.klaviatura/23.z.png" 
+	       ru_name="з"/>
+	<file 
+	       file_name="9.drugoe/1.klaviatura/24.i.png" 
+	       ru_name="и"/>			
+	<file 
+	       file_name="9.drugoe/1.klaviatura/25.ii.png" 
+	       ru_name="й"/>
+	<file 
+	       file_name="9.drugoe/1.klaviatura/26.k.png" 
+	       ru_name=" к"/> <!-- with space -->
+	<file 
+	       file_name="9.drugoe/1.klaviatura/27.l.png" 
+	       ru_name="л"/>
+	<file 
+	       file_name="9.drugoe/1.klaviatura/28.m.png" 
+	       ru_name="м"/>			
+	<file 
+	       file_name="9.drugoe/1.klaviatura/29.n.png" 
+	       ru_name="н"/>
+	   <file 
+	       file_name="9.drugoe/1.klaviatura/30.o.png" 
+	       ru_name="о"/>
+	<file 
+	       file_name="9.drugoe/1.klaviatura/31.p.png" 
+	       ru_name="п"/>
+	   	<file 
+	       file_name="9.drugoe/1.klaviatura/32.r.png" 
+	       ru_name="р"/>
+	<file 
+	       file_name="9.drugoe/1.klaviatura/33.s.png" 
+	       ru_name="с"/>			
+	<file 
+	       file_name="9.drugoe/1.klaviatura/34.t.png" 
+	       ru_name="т"/>
+	<file 
+	       file_name="9.drugoe/1.klaviatura/35.u.png" 
+	       ru_name="у"/>
+	<file 
+	       file_name="9.drugoe/1.klaviatura/36.f.png" 
+	       ru_name="ф"/>
+	<file 
+	       file_name="9.drugoe/1.klaviatura/37.h.png" 
+	       ru_name="х"/>			
+	<file 
+	       file_name="9.drugoe/1.klaviatura/38.c.png" 
+	       ru_name="ц"/>
+    <file 
+	       file_name="9.drugoe/1.klaviatura/39.ch.png" 
+	       ru_name="ч"/>
+	<file 
+	       file_name="9.drugoe/1.klaviatura/40.sh.png" 
+	       ru_name="ш"/>
+	<file 
+	       file_name="9.drugoe/1.klaviatura/41.sch.png" 
+	       ru_name="щ"/>			
+	<file 
+	       file_name="9.drugoe/1.klaviatura/42.tz.png" 
+	       ru_name="ъ"/>
+	<file 
+	       file_name="9.drugoe/1.klaviatura/43.iii.png" 
+	       ru_name="ы"/>
+	<file 
+	       file_name="9.drugoe/1.klaviatura/44.mz.png" 
+	       ru_name="ь"/>
+	<file 
+	       file_name="9.drugoe/1.klaviatura/45.ie.png" 
+	       ru_name="э"/>			
+	<file 
+	       file_name="9.drugoe/1.klaviatura/46.iu.png" 
+	       ru_name="ю"/>
+   <file 
+	       file_name="9.drugoe/1.klaviatura/47.ia.png" 
+	       ru_name=" я"/> <!-- with space -->
+   <file 
+	       file_name="9.drugoe/3.predlogi/1.k.jpg" 
+	       ru_name="к"/>
+    <file 
+	       file_name="9.drugoe/3.predlogi/2.ot.jpg" 
+	       ru_name="от"/>
+	<file 
+	       file_name="9.drugoe/3.predlogi/3.vverh.jpg" 
+	       ru_name="вверх"/>
+	<file 
+	       file_name="9.drugoe/3.predlogi/4.vniz.jpg" 
+	       ru_name="вниз"/>
+	<file 
+	       file_name="9.drugoe/3.predlogi/5.blizko.jpg" 
+	       ru_name="близко"/>
+	<file 
+	       file_name="9.drugoe/3.predlogi/6.daleko.jpg" 
+	       ru_name="далеко"/>
+	<file 
+	       file_name="9.drugoe/3.predlogi/7.na.jpg" 
+	       ru_name="на"/>
+	<file 
+	       file_name="9.drugoe/3.predlogi/8.vnutri.jpg" 
+	       ru_name="внутри"/>
+	<file 
+	       file_name="9.drugoe/3.predlogi/9.nad.jpg" 
+	       ru_name="над"/>
+	<file 
+	       file_name="9.drugoe/3.predlogi/10.pod.jpg" 
+	       ru_name="под"/>
+	<file 
+	       file_name="9.drugoe/3.predlogi/11.pered.jpg" 
+	       ru_name="перед"/>
+	<file 
+	       file_name="9.drugoe/3.predlogi/12.1.za.jpg" 
+	       ru_name="за"/>	
+	<file 
+	       file_name="9.drugoe/3.predlogi/12.okolo.jpg" 
+	       ru_name="около"/>
+	<file 
+	       file_name="9.drugoe/3.predlogi/13.mezhdu.jpg" 
+	       ru_name="между"/>
+	<file 
+	       file_name="9.drugoe/3.predlogi/14.iz.jpg" 
+	       ru_name="из"/>
+	<file 
+	       file_name="9.drugoe/3.predlogi/15.v.jpg" 
+	       ru_name="в"/>
+	<file 
+	       file_name="9.drugoe/3.predlogi/16.vmeste.jpg" 
 	       ru_name="вместе"/>
 	<file 
-	       file_name="9.drugoe/1.predlogi/17.opjat.jpg" 
+	       file_name="9.drugoe/3.predlogi/17.opjat.jpg" 
 	       ru_name="опять"/>	
 	<file 
 	       file_name="9.drugoe/2.chislitelnye/1.odin.jpg" 

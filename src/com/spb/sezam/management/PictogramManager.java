@@ -90,6 +90,7 @@ public class PictogramManager {
 				//pictogram.setIcon(bd);
 				pGroup.addInnerPictogram(pictogram);
 			} else {
+				Log.i("GROUP", "GROUP = " + fullFolderPath + File.separator + name);
 				GroupPictogram nestedGroup = new GroupPictogram(path + File.separator + name);
 				pGroup.addInnerPictogram(nestedGroup);
 				allGroups.add(nestedGroup);

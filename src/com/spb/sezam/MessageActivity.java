@@ -20,7 +20,6 @@ import com.spb.sezam.NavigationDrawerFragment.NavigationDrawerCallbacks;
 import com.spb.sezam.adapters.GridViewAdapter;
 import com.spb.sezam.adapters.GridViewHolder;
 import com.spb.sezam.adapters.GroupAdapter;
-import com.spb.sezam.adapters.MessageAdapter;
 import com.spb.sezam.management.ElementType;
 import com.spb.sezam.management.GroupPictogram;
 import com.spb.sezam.management.NameManager;
@@ -46,26 +45,19 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.NavUtils;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.GridView;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Toast;
 import android.widget.TextView;
@@ -994,6 +986,7 @@ public List<String[]> filterMessages(JSONArray messages) throws JSONException{
 
 		@Override
 		protected Void doInBackground(Void... params) {
+			
 			//init NameManager
 			XmlPullParser parser = getResources().getXml(R.xml.catalog);
 			NameManager.getInstance().init(parser);
