@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import com.spb.sezam.adapters.UsersAdapter;
 import com.spb.sezam.utils.ErrorUtil;
+import com.vk.sdk.VKSdk;
 import com.vk.sdk.api.VKApi;
 import com.vk.sdk.api.VKApiConst;
 import com.vk.sdk.api.VKError;
@@ -95,6 +96,8 @@ public class NavigationDrawerFragment extends Fragment {
     private Button headerButton;
     
     private Menu menu;
+    
+    private static Logger logger = LoggerFactory.getLogger(NavigationDrawerFragment.class);
     
     //-----------------------VK listeners-----------------------------//
     private VKRequestListener loadFriendsListener = new VKRequestListener() {
@@ -213,23 +216,16 @@ public class NavigationDrawerFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        Logger SlfLogger = LoggerFactory.getLogger(NavigationDrawerFragment.class);
-        SlfLogger.debug("Creating NavigationDrawer");
+        logger.debug("Creating NavigationDrawer");
         
         // Read in the flag indicating whether or not the user has demonstrated awareness of the
         // drawer. See PREF_USER_LEARNED_DRAWER for details.
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mUserLearnedDrawer = sp.getBoolean(PREF_USER_LEARNED_DRAWER, false);
 
-        if (savedInstanceState != null) {
-            mCurrentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
-            mFromSavedInstanceState = true;
-        }
+      
 
-        // Select either the default item (0) or the last selected item.
-        if(mCurrentSelectedPosition >= 0){
-        	selectItem(mCurrentSelectedPosition);
-        }
+        
         
         //Verev@ ?????????
         ////////////////----------------
@@ -237,8 +233,8 @@ public class NavigationDrawerFragment extends Fragment {
 //        VKRequest request = VKApi.friends().get(VKParameters.from(VKApiConst.FIELDS, "id,first_name,last_name,sex,bdate"));
 //		
 //		request.executeWithListener(loadFriendsListener);
-        recieveUsersInfoPeriodicly();
-        checkUnreadeMessagesPeriodicly();
+        
+        
     }
     
     private void recieveUsersInfoPeriodicly(){
@@ -322,13 +318,6 @@ public class NavigationDrawerFragment extends Fragment {
 	}
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        // Indicate that this fragment would like to influence the set of actions in the action bar.
-        setHasOptionsMenu(true);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mDrawerListView = (ListView) inflater.inflate(
@@ -338,11 +327,37 @@ public class NavigationDrawerFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectItem(position);
             }
-        }); mDrawerListView.setActivated(false);
-       /* Button b = new Button(MainActivity.this);
-        b.setText("asd");*/
+        }); 
+        mDrawerListView.setActivated(false);
+        
+        if (savedInstanceState != null) {
+            mCurrentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
+            ArrayList<String> stringUsers = savedInstanceState.getStringArrayList("users");
+            users = stringListToJsonList(stringUsers);
+            mFromSavedInstanceState = true;
+        }
+        
         setAdapterForListView(users);
+       
         return mDrawerListView;
+    }
+    
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        // Indicate that this fragment would like to influence the set of actions in the action bar.
+        setHasOptionsMenu(true);
+        
+        // Select either the default item (no item) or the last selected item.
+        if(mCurrentSelectedPosition >= 0){
+        	logger.debug("mDrawerListView is " + mDrawerListView);
+        	logger.debug("position="+mCurrentSelectedPosition);
+        	selectItem(mCurrentSelectedPosition);
+        } else {
+        	//selectItem has checkUnreadeMessagesPeriodicly() in it
+        	checkUnreadeMessagesPeriodicly();
+        }
+        recieveUsersInfoPeriodicly();
     }
     
     private void setAdapterForListView(List<JSONObject> friendsArr){
@@ -444,6 +459,7 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     private void selectItem(int position) {
+    	
         mCurrentSelectedPosition = position;
         JSONObject user = null;
         if (mDrawerListView != null) {
@@ -456,6 +472,7 @@ public class NavigationDrawerFragment extends Fragment {
             mDrawerLayout.closeDrawer(mFragmentContainerView);
         }
         if (mCallbacks != null) {
+        	logger.debug("user " + user);
             mCallbacks.onNavigationDrawerItemSelected(user);
             handler.removeCallbacks(checkUnreadMessagesRunnable);
             checkUnreadeMessagesPeriodicly();
@@ -489,6 +506,27 @@ public class NavigationDrawerFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(STATE_SELECTED_POSITION, mCurrentSelectedPosition);
+        outState.putStringArrayList("users", jsonListToStringList(users));
+    }
+    
+    private ArrayList<String> jsonListToStringList(List<JSONObject> jsonList){
+    	ArrayList<String> stringList = new ArrayList<>();
+    	for(JSONObject json : jsonList){
+    		stringList.add(json.toString());
+    	}
+    	return stringList;
+    }
+    
+    private ArrayList<JSONObject> stringListToJsonList(List<String> stringList){
+    	ArrayList<JSONObject> jsonList = new ArrayList<>();
+    	for(String str : stringList){
+    		try {
+				jsonList.add(new JSONObject(str));
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+    	}
+    	return jsonList;
     }
 
     @Override

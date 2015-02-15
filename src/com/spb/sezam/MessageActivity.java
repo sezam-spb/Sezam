@@ -63,7 +63,7 @@ import android.widget.Toast;
 import android.widget.TextView;
 import android.widget.LinearLayout;
 
-public class MessageActivity extends ActionBarActivity implements NavigationDrawerCallbacks, IPictogramHolder{
+public class MessageActivity extends BaseActivity implements NavigationDrawerCallbacks, IPictogramHolder{
 	
 	private NavigationDrawerFragment mNavigationDrawerFragment;
 
@@ -189,7 +189,15 @@ public class MessageActivity extends ActionBarActivity implements NavigationDraw
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
+		VKUIHelper.onCreate(this);
+		
+		//if not initialized in other activity (VKActivity ;)) then init
+		if(VKSdk.instance() == null){
+			initVKSdk();
+	        VKSdk.wakeUpSession();
+		}
 		setContentView(R.layout.activity_message);
 		
 		subGroupsView = (GridView)findViewById(R.id.subGroups_view);
@@ -739,18 +747,6 @@ public class MessageActivity extends ActionBarActivity implements NavigationDraw
 		super.onDestroy();
 		VKUIHelper.onDestroy(this);
 	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		VKUIHelper.onActivityResult(this, requestCode, resultCode, data);
-	}
-
-	private void startActivity(Class<? extends Activity> a) {
-		Intent startNewActivityOpen = new Intent(this, a);
-		startActivityForResult(startNewActivityOpen, 0);
-	}	
-		
 	
 	/*private void decodeTextToImages(List<String[]> messages){
 	LinearLayout historyLayout = (LinearLayout)findViewById(R.id.messageHistory);

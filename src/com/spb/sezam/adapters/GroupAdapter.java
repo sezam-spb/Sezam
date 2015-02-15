@@ -69,8 +69,8 @@ public class GroupAdapter extends BaseAdapter{
 		return elementView;
 	}
 	
-	public void updateView(List<? extends Pictogram> subGroups) {
-        this.groups = subGroups;
+	public void updateView(List<? extends Pictogram> groups) {
+        this.groups = groups;
         notifyDataSetChanged();
     }
 	
