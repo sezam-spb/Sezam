@@ -139,10 +139,10 @@ public class MessageActivity extends BaseActivity implements NavigationDrawerCal
 	        	if(length != 0){
 		            showHistory(newMessages);
 		            scorllDown((ScrollView)findViewById(R.id.scrollView1));
-		            if(isThereRecieved(newMessages) && newMessages != messages){
+		            /*if(isThereRecieved(newMessages) && newMessages != messages){
 		            	Toast showSent = Toast.makeText(getApplicationContext(), "Получено новое сообщение", Toast.LENGTH_SHORT);
 		    			showSent.show();
-		            }
+		            }*/
 		            
 		            //mark received new messages as read
 		            //should be some trick here to prevent mark as read when drawer is opened
@@ -270,7 +270,7 @@ public class MessageActivity extends BaseActivity implements NavigationDrawerCal
 		case R.id.action_email:
 			Intent i = new Intent(Intent.ACTION_SEND);
 			i.setType("text/plain");
-			i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"annasezam@gmail.com"});
+			i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"support@sezamapp.ru"});
 			i.putExtra(Intent.EXTRA_SUBJECT, "Письмо администратору");
 			i.putExtra(Intent.EXTRA_TEXT   , "\nОтправлено с приложения Sezam");
 			try {
@@ -858,7 +858,6 @@ public List<String[]> filterMessages(JSONArray messages) throws JSONException{
 					" " + user.getString("last_name");
 			incomingUserId = user.getInt("id");
 		} catch (JSONException e) {
-			// TODO To be handled
 			e.printStackTrace();
 		}
 		if(incomingUserId != activeUserId){
